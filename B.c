@@ -13,14 +13,14 @@ struct msgbuf
 {
 	long mtype;
 	char mtext[128];
-};
+};//消息队列的通信内容都输到这个数组里
 
 int main(int argc,char **argv)
 {//process B
 	args_check(argc,3);
 	signal(SIGINT,final);
 
-	msgid=msgget(1000,IPC_CREAT|0600);
+	msgid=msgget(1000,IPC_CREAT|0600);//创建消息队列
         struct msgbuf buf2;
 	int fdw=open(argv[1],O_WRONLY);
 	int fdr=open(argv[2],O_RDONLY);
